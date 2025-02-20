@@ -1,4 +1,4 @@
-<header class="" data-controller="nav-slide">
+<header class="" data-controller="slide-over">
     <nav class="bg-white border-gray-200 dark:bg-gray-900 w-full">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <%= link_to "#" ,class: "flex items-center space-x-3 rtl:space-x-reverse" do %>
@@ -7,7 +7,7 @@
             <%= button_to root_path, 
                 class: "inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600",
                 aria: { controls: "navbar-default", expanded: "false" },
-                data: { collapse_toggle: "navbar-default" },
+                data: { collapse_toggle: "navbar-default", action: "click->slide-over#show" },
                 type: "button" do %>
             <span class="sr-only">Open main menu</span>
             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -40,33 +40,47 @@
         </div>
     </nav>
 
-    <div class="w-screen h-screen bg-gray-900 bg-opacity-50 fixed top-0 left-0 z-50" 
+
+
+    <!-- Slide Over -->
+    <div 
+    data-slide-over-target="
+    class="w-screen h-screen bg-gray-900 bg-opacity-50 fixed top-0 left-0 z-50 hidden" 
     id="nav-slide-overlay"
-    data-action="click->nav-slide#close">
-        <ul class="space-y-1">
+    
+    
+    >
+        <ul class="space-y-1 w-screen h-screen flex flex-col justify-center items-center">
             <li>
-                <%= link_to "Close", "#", class: "block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700" %>
+                <%# button_to do image x close %>
+                <%= link_to "Close", "#", 
+                class: "block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 justify-self-end",
+                data: { action: "click->nav-slide#hide", slide-over- }
+                %>
             </li>
             
             <li>
-                <%= link_to "Home", root_path, class: "block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700" %>
+                <%= link_to "Home", root_path, class: "block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 grow" %>
             </li>
 
             <li>
-                <%= link_to "About", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700" %>
+                <%= link_to "About", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 grow" %>
             </li>
 
             <li>
-                <%= link_to "Services", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700" %>
+                <%= link_to "Services", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 grow" %>
             </li>
 
             <li>
-                <%= link_to "Pricing", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700" %>
+                <%= link_to "Pricing", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 grow" %>
             </li>
 
             <li>
-                <%= link_to "Contact", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700" %>
+                <%= link_to "Contact", "#", class: "block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700 grow" %>
             </li>
         </ul> 
     </div>
+
+
+
 </header>
